@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, file_names
 
 import 'package:flutter/material.dart';
 
@@ -18,7 +18,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
           child: IconButton(
             color: Color.fromARGB(255, 56, 180, 174),
             onPressed: () {
-              Navigator.of(context).pushNamed("Home Screen");
+              Navigator.pushNamed(context,"Home Screen");
             },
             icon: Icon(
               Icons.arrow_forward_ios,

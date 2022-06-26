@@ -19,17 +19,7 @@ class Order extends Equatable {
     required this.Waiting,
     required this.OrderNo,
   });
-  @override
-  List<Object?> get props {
-    return [
-      OrderNo,
-      OrderQuan,
-      Receiving,
-      Photo,
-      DateTime,
-      Waiting,
-    ];
-  }
+
 
   static List<Order> orders = [
     Order(
@@ -93,4 +83,7 @@ class Order extends Equatable {
       Waiting: "قيد الانتظار",
     ),
   ];
+  
+  @override
+  List<Object?> get props => throw UnimplementedError();
 }

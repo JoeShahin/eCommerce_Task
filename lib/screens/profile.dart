@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:market_app/widgets/custom_nav_bar.dart';
 import 'package:market_app/widgets/widgets_export.dart';
 
 
