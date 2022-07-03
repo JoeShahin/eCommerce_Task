@@ -61,23 +61,7 @@ class _MarketState extends State<Market> with TickerProviderStateMixin {
             Divider(
               thickness: 1,
             ),
-            OrderCard(order: Order.orders.first),
-            Divider(
-              thickness: 1,
-            ),
-            OrderCard(order: Order.orders.elementAt(1)),
-            Divider(
-              thickness: 1,
-            ),
-            OrderCard(order: Order.orders.elementAt(2)),
-            Divider(
-              thickness: 1,
-            ),
-            OrderCard(order: Order.orders.elementAt(3)),
-            Divider(
-              thickness: 1,
-            ),
-            OrderCard(order: Order.orders.last),
+            JsonOrderCard(),
           ],
         ),
       ),
