@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, non_constant_identifier_names, must_call_super, unused_element, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, non_constant_identifier_names, must_call_super, unused_element, prefer_const_literals_to_create_immutables, prefer_final_fields
 
 import 'package:flutter/material.dart';
 import 'package:market_app/models/models_export.dart';
@@ -19,51 +19,114 @@ class Market extends StatefulWidget {
 }
 
 class _MarketState extends State<Market> with TickerProviderStateMixin {
+  late TabController _myController;
+  @override
+  void initState() {
+    super.initState();
+    _myController = TabController(length: 2, vsync: this, initialIndex: 0);
+    _myController.animateTo(0);
+  }
+
   @override
   Widget build(BuildContext context) {
-    TabController myController =
-        TabController(length: 3, vsync: this, initialIndex: 1);
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: CustomAppBar(),
-      bottomNavigationBar: CustomNavBar(),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            IntrinsicHeight(
-              child: TabBar(
-                controller: myController,
-                labelColor: Color.fromARGB(255, 40, 124, 120),
-                labelStyle: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  fontFamily: "Avenir",
-                ),
-                indicatorColor: Colors.transparent,
-                padding: EdgeInsets.symmetric(horizontal: 50),
-                tabs: [
-                  Tab(
-                    text: "سـابقـة",
-                  ),
-                  VerticalDivider(
-                    endIndent: 1,
-                    color: Color.fromARGB(255, 40, 124, 120),
-                    indent: 1,
-                    width: 2,
-                    thickness: 2,
-                  ),
-                  Tab(
-                    text: "جـديـدة",
-                  ),
-                ],
+      appBar: AppBar(
+        actions: [
+          Container(
+            padding: const EdgeInsets.only(right: 10),
+            child: IconButton(
+              color: Color.fromARGB(255, 40, 124, 120),
+              onPressed: () {
+                Navigator.pushNamed(context, "Home Screen");
+              },
+              icon: Icon(
+                Icons.arrow_forward_ios,
               ),
             ),
-            Divider(
-              thickness: 1,
+          ),
+        ],
+        toolbarHeight: 30,
+        backgroundColor: Colors.white,
+        elevation: 0,
+        bottom: TabBar(
+          labelPadding: EdgeInsets.symmetric(horizontal: 50),
+          indicatorColor: Colors.transparent,
+          indicator: BoxDecoration(
+            border: Border(
+              left: BorderSide(
+                color: Color.fromARGB(255, 40, 124, 120),
+              ),
+              right: BorderSide(
+                color: Color.fromARGB(255, 40, 124, 120),
+              ),
             ),
-            JsonOrderCard(),
+          ),
+          labelColor: Color.fromARGB(255, 40, 124, 120),
+          controller: _myController,
+          onTap: (int index) {},
+          labelStyle: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+            fontFamily: "Avenir",
+          ),
+          tabs: [
+            Tab(
+              text: "سـابقـة",
+            ),
+            Tab(
+              text: "جـديـدة",
+            )
           ],
         ),
+      ),
+      bottomNavigationBar: CustomNavBar(),
+      body: TabBarView(
+        controller: _myController,
+        children: [
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                Divider(
+                  thickness: 2,
+                ),
+                OrderCard(order: Order.orders.first),
+                Divider(
+                  thickness: 2,
+                ),
+                OrderCard(
+                  order: Order.orders.elementAt(1),
+                ),
+                Divider(
+                  thickness: 2,
+                ),
+                OrderCard(
+                  order: Order.orders.elementAt(2),
+                ),
+                Divider(
+                  thickness: 2,
+                ),
+                OrderCard(
+                  order: Order.orders.elementAt(3),
+                ),
+                Divider(
+                  thickness: 2,
+                ),
+                OrderCard(order: Order.orders.last),
+              ],
+            ),
+          ),
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                Divider(
+                    thickness: 2,
+                  ),
+                JsonOrderCard(),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

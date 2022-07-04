@@ -30,108 +30,120 @@ class _JsonOrderCardState extends State<JsonOrderCard> {
             return ListView.builder(
                 itemCount: items == null ? 0 : items.length,
                 itemBuilder: (context, index) {
-                  return Card(
-                      child: Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(top: 10, right: 10, left: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Container(
-                              padding: EdgeInsets.only(right: 100),
-                              child: IconButton(
-                                onPressed: () {},
-                                icon: Icon(Icons.arrow_back_ios),
-                                color: Color.fromARGB(255, 40, 124, 120),
+                  return SingleChildScrollView(
+                    padding: EdgeInsets.all(8),
+                    child: Card(
+                        child: Column(
+                      children: [
+                        Padding(
+                          padding:
+                              EdgeInsets.only(top: 10, right: 10, left: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Container(
+                                width: 20,
+                                height: 10,
+                                padding: EdgeInsets.only(right: 100),
+                                child: IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(Icons.arrow_back_ios),
+                                  color: Color.fromARGB(255, 40, 124, 120),
+                                ),
                               ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(right: 10),
-                              child: Column(
+                              Container(
+                                width: 200,
+                                height: 200,
+                                padding: EdgeInsets.only(right: 10),
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      items[index].OrderNo.toString(),
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        color:
+                                            Color.fromARGB(255, 40, 124, 120),
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      items[index].OrderQuan.toString(),
+                                      textAlign: TextAlign.right,
+                                      style: TextStyle(
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                    Text(
+                                      items[index].Receiving.toString(),
+                                      textAlign: TextAlign.right,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                flex: 12,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Image(
+                                    image: AssetImage(
+                                      items[index].Photo.toString(),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Container(
+                          width: 200,
+                          height: 100,
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            textDirection: TextDirection.rtl,
+                            children: [
+                              Row(
                                 children: [
                                   Text(
-                                    items[index].OrderNo.toString(),
-                                    textAlign: TextAlign.center,
+                                    items[index].DateTime.toString(),
                                     style: TextStyle(
-                                      color: Color.fromARGB(255, 40, 124, 120),
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                        color: Color.fromARGB(255, 74, 74, 75)),
                                   ),
-                                  Text(
-                                    items[index].OrderQuan.toString(),
-                                    textAlign: TextAlign.right,
-                                    style: TextStyle(
-                                      color: Colors.grey,
-                                    ),
-                                  ),
-                                  Text(
-                                    items[index].Receiving.toString(),
-                                    textAlign: TextAlign.right,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                  Icon(
+                                    Icons.timer_outlined,
+                                    color: Color.fromARGB(255, 40, 124, 120),
                                   ),
                                 ],
                               ),
-                            ),
-                            Expanded(
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: Image(
-                                  image: AssetImage(
-                                    items[index].Photo.toString(),
+                              Row(
+                                children: [
+                                  InkWell(
+                                    splashColor: Colors.blue,
+                                    onTap: () => Navigator.of(context)
+                                        .pushNamed("Waiting"),
+                                    child: Text(
+                                      items[index].Waiting.toString(),
+                                      style: TextStyle(
+                                          color: Colors.blue,
+                                          decoration: TextDecoration.underline),
+                                    ),
                                   ),
-                                ),
+                                  Icon(
+                                    Icons.description_outlined,
+                                    color: Color.fromARGB(255, 40, 124, 120),
+                                  ),
+                                ],
                               ),
-                            )
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          textDirection: TextDirection.rtl,
-                          children: [
-                            Row(
-                              children: [
-                                Text(
-                                  items[index].DateTime.toString(),
-                                  style: TextStyle(
-                                      color: Color.fromARGB(255, 74, 74, 75)),
-                                ),
-                                Icon(
-                                  Icons.timer_outlined,
-                                  color: Color.fromARGB(255, 40, 124, 120),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                InkWell(
-                                  splashColor: Colors.blue,
-                                  onTap: () => Navigator.of(context)
-                                      .pushNamed("Waiting"),
-                                  child: Text(
-                                    items[index].Waiting.toString(),
-                                    style: TextStyle(
-                                        color: Colors.blue,
-                                        decoration: TextDecoration.underline),
-                                  ),
-                                ),
-                                Icon(
-                                  Icons.description_outlined,
-                                  color: Color.fromARGB(255, 40, 124, 120),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ));
+                      ],
+                    )),
+                  );
                 });
           } else {
             return Center(
