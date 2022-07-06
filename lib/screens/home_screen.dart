@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors, non_constant_identifier_names, must_call_super, unused_element, prefer_const_literals_to_create_immutables, prefer_final_fields
 
 import 'package:flutter/material.dart';
-import 'package:market_app/models/models_export.dart';
 import '../widgets/widgets_export.dart';
 
 class Market extends StatefulWidget {
@@ -90,29 +89,10 @@ class _MarketState extends State<Market> with TickerProviderStateMixin {
                 Divider(
                   thickness: 2,
                 ),
-                OrderCard(order: Order.orders.first),
+                OldOrderCard(),
                 Divider(
                   thickness: 2,
                 ),
-                OrderCard(
-                  order: Order.orders.elementAt(1),
-                ),
-                Divider(
-                  thickness: 2,
-                ),
-                OrderCard(
-                  order: Order.orders.elementAt(2),
-                ),
-                Divider(
-                  thickness: 2,
-                ),
-                OrderCard(
-                  order: Order.orders.elementAt(3),
-                ),
-                Divider(
-                  thickness: 2,
-                ),
-                OrderCard(order: Order.orders.last),
               ],
             ),
           ),
@@ -120,9 +100,9 @@ class _MarketState extends State<Market> with TickerProviderStateMixin {
             child: Column(
               children: [
                 Divider(
-                    thickness: 2,
-                  ),
-                JsonOrderCard(),
+                  thickness: 2,
+                ),
+                NewOrderCard(),
               ],
             ),
           ),

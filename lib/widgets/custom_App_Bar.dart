@@ -16,7 +16,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
         Container(
           padding: const EdgeInsets.only(right: 10),
           child: IconButton(
-            color: Color.fromARGB(255, 56, 180, 174),
+            color: Color.fromARGB(255, 40, 124, 120),
             onPressed: () {
               Navigator.pushNamed(context,"Home Screen");
             },

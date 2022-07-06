@@ -4,36 +4,37 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:market_app/models/json_order_model.dart';
 import 'package:market_app/widgets/widgets_export.dart';
 
-class JsonOrderCard extends StatefulWidget {
-  JsonOrderCard({Key? key}) : super(key: key);
+import '../models/new_order_model.dart';
+
+class NewOrderCard extends StatefulWidget {
+  NewOrderCard({Key? key}) : super(key: key);
 
   @override
-  State<JsonOrderCard> createState() => _JsonOrderCardState();
+  State<NewOrderCard> createState() => _NewOrderCardState();
 }
 
-class _JsonOrderCardState extends State<JsonOrderCard> {
+class _NewOrderCardState extends State<NewOrderCard> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(),
-      bottomNavigationBar: CustomNavBar(),
-      body: FutureBuilder(
-        future: ReadJsonData(),
-        builder: (context, data) {
-          if (data.hasError) {
-            return Center(child: Text("${data.error}"));
-          } else if (data.hasData) {
-            var items = data.data as List<JsonOrder>;
-            return ListView.builder(
+    return SizedBox(
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
+      child: Scaffold(
+        bottomNavigationBar: CustomNavBar(),
+        body: FutureBuilder(
+          future: ReadJsonData(),
+          builder: (context, data) {
+            if (data.hasError) {
+              return Center(child: Text("${data.error}"));
+            } else if (data.hasData) {
+              var items = data.data as List<NewOrder>;
+              return ListView.builder(
                 itemCount: items == null ? 0 : items.length,
                 itemBuilder: (context, index) {
-                  return SingleChildScrollView(
-                    padding: EdgeInsets.all(8),
-                    child: Card(
-                        child: Column(
+                  return Card(
+                    child: Column(
                       children: [
                         Padding(
                           padding:
@@ -42,18 +43,17 @@ class _JsonOrderCardState extends State<JsonOrderCard> {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Container(
-                                width: 20,
-                                height: 10,
                                 padding: EdgeInsets.only(right: 100),
                                 child: IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.pushNamed(
+                                        context, "Order Details");
+                                  },
                                   icon: Icon(Icons.arrow_back_ios),
                                   color: Color.fromARGB(255, 40, 124, 120),
                                 ),
                               ),
                               Container(
-                                width: 200,
-                                height: 200,
                                 padding: EdgeInsets.only(right: 10),
                                 child: Column(
                                   children: [
@@ -85,7 +85,6 @@ class _JsonOrderCardState extends State<JsonOrderCard> {
                                 ),
                               ),
                               Expanded(
-                                flex: 12,
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(20),
                                   child: Image(
@@ -99,8 +98,6 @@ class _JsonOrderCardState extends State<JsonOrderCard> {
                           ),
                         ),
                         Container(
-                          width: 200,
-                          height: 100,
                           padding: const EdgeInsets.only(top: 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -142,22 +139,24 @@ class _JsonOrderCardState extends State<JsonOrderCard> {
                           ),
                         ),
                       ],
-                    )),
+                    ),
                   );
-                });
-          } else {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        },
+                },
+              );
+            } else {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          },
+        ),
       ),
     );
   }
 
-  Future<List<JsonOrder>> ReadJsonData() async {
+  Future<List<NewOrder>> ReadJsonData() async {
     final jsondata = await rootBundle.loadString('json_data/data.json');
     final list = json.decode(jsondata) as List<dynamic>;
-    return list.map((e) => JsonOrder.fromJson(e)).toList();
+    return list.map((e) => NewOrder.fromJson(e)).toList();
   }
 }
