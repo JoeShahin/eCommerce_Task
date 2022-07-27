@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:market_app/widgets/order_card_items.dart';
 import 'package:market_app/widgets/widgets_export.dart';
 
 import '../models/models_export.dart';
@@ -33,113 +34,15 @@ class _OldOrderCardState extends State<OldOrderCard> {
               return ListView.builder(
                 itemCount: items == null ? 0 : items.length,
                 itemBuilder: (context, index) {
-                  return Card(
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding:
-                              EdgeInsets.only(top: 10, right: 10, left: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Container(
-                                padding: EdgeInsets.only(right: 100),
-                                child: IconButton(
-                                  onPressed: () {
-                                    Navigator.pushNamed(
-                                        context, "Order Details");
-                                  },
-                                  icon: Icon(Icons.arrow_back_ios),
-                                  color: Color.fromARGB(255, 40, 124, 120),
-                                ),
-                              ),
-                              Container(
-                                padding: EdgeInsets.only(right: 15),
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      "Order Number: ${items[index].OrderNom.toString()}",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color:
-                                            Color.fromARGB(255, 40, 124, 120),
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Text('Order Quantity: ${
-                                      items[index].OrderQuant.toString()}',
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color: Colors.grey,
-                                      ),
-                                    ),
-                                    Text(
-                                      items[index].Receivings.toString(),
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Expanded(
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(20),
-                                  child: Image(
-                                    image: AssetImage(
-                                      items[index].Photos.toString(),
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            textDirection: TextDirection.rtl,
-                            children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    items[index].DateTimes.toString(),
-                                    style: TextStyle(
-                                        color: Color.fromARGB(255, 74, 74, 75)),
-                                  ),
-                                  Icon(
-                                    Icons.timer_outlined,
-                                    color: Color.fromARGB(255, 40, 124, 120),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  InkWell(
-                                    splashColor: Colors.blue,
-                                    onTap: () => Navigator.of(context)
-                                        .pushNamed("Waiting"),
-                                    child: Text(
-                                      items[index].Waitings.toString(),
-                                      style: TextStyle(
-                                          color: Colors.blue,
-                                          decoration: TextDecoration.underline),
-                                    ),
-                                  ),
-                                  Icon(
-                                    Icons.description_outlined,
-                                    color: Color.fromARGB(255, 40, 124, 120),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                  return OrderCardItems(
+                    OrderNom:
+                        "Order Number: ${items[index].OrderNom.toString()}",
+                    OrderQuan:
+                        'Order Quantity: ${items[index].OrderQuant.toString()}',
+                    Receiving: items[index].Receivings.toString(),
+                    photo: items[index].Photos.toString(),
+                    DateTime: items[index].DateTimes.toString(),
+                    Waiting: items[index].Waitings.toString(),
                   );
                 },
               );

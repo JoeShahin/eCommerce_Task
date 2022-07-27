@@ -1,25 +1,24 @@
 // ignore_for_file: non_constant_identifier_names
 
-
 class OldOrder {
-  String? OrderNom;
-  String? OrderQuant;
+  late String OrderNom;
+  late String OrderQuant;
   String? Receivings;
-  String? Photos;
+  late String Photos;
   String? DateTimes;
   String? Waitings;
-  String? OrderName;
-  String? Price;
+  late String OrderName;
+  late String Price;
 
   OldOrder({
-    this.OrderNom,
-    this.OrderQuant,
+    required this.OrderNom,
+    required this.OrderQuant,
     this.Receivings,
-    this.Photos,
+    required this.Photos,
     this.DateTimes,
     this.Waitings,
-    this.OrderName,
-    this.Price,
+    required this.OrderName,
+    required this.Price,
   });
 
   OldOrder.fromJson(Map<String, dynamic> json) {

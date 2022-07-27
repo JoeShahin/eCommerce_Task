@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:market_app/widgets/order_card_items.dart';
 import 'package:market_app/widgets/widgets_export.dart';
 
 import '../models/new_order_model.dart';
@@ -33,113 +34,13 @@ class _NewOrderCardState extends State<NewOrderCard> {
               return ListView.builder(
                 itemCount: items == null ? 0 : items.length,
                 itemBuilder: (context, index) {
-                  return Card(
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding:
-                              EdgeInsets.only(top: 10, right: 10, left: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Container(
-                                padding: EdgeInsets.only(right: 100),
-                                child: IconButton(
-                                  onPressed: () {
-                                    Navigator.pushNamed(
-                                        context, "Order Details");
-                                  },
-                                  icon: Icon(Icons.arrow_back_ios),
-                                  color: Color.fromARGB(255, 40, 124, 120),
-                                ),
-                              ),
-                              Container(
-                                padding: EdgeInsets.only(right: 10),
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      items[index].OrderNo.toString(),
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color:
-                                            Color.fromARGB(255, 40, 124, 120),
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Text(
-                                      items[index].OrderQuan.toString(),
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color: Colors.grey,
-                                      ),
-                                    ),
-                                    Text(
-                                      items[index].Receiving.toString(),
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Expanded(
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(20),
-                                  child: Image(
-                                    image: AssetImage(
-                                      items[index].Photo.toString(),
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            textDirection: TextDirection.rtl,
-                            children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    items[index].DateTime.toString(),
-                                    style: TextStyle(
-                                        color: Color.fromARGB(255, 74, 74, 75)),
-                                  ),
-                                  Icon(
-                                    Icons.timer_outlined,
-                                    color: Color.fromARGB(255, 40, 124, 120),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  InkWell(
-                                    splashColor: Colors.blue,
-                                    onTap: () => Navigator.of(context)
-                                        .pushNamed("Waiting"),
-                                    child: Text(
-                                      items[index].Waiting.toString(),
-                                      style: TextStyle(
-                                          color: Colors.blue,
-                                          decoration: TextDecoration.underline),
-                                    ),
-                                  ),
-                                  Icon(
-                                    Icons.description_outlined,
-                                    color: Color.fromARGB(255, 40, 124, 120),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                  return OrderCardItems(
+                    OrderNom: items[index].OrderNo.toString(),
+                    OrderQuan: items[index].OrderQuan.toString(),
+                    Receiving: items[index].Receiving.toString(),
+                    DateTime: items[index].DateTime.toString(),
+                    Waiting: items[index].Waiting.toString(),
+                    photo: items[index].Photo.toString(),
                   );
                 },
               );
