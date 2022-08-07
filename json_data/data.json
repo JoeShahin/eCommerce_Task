@@ -1,42 +1,52 @@
 [
     {
-        "OrderNo": "رقـم الطلـب ....    ",
-        "OrderQuan": "كمية الطلب",
+        "OrderNo": "1021   ",
+        "OrderQuan": "9",
         "Receiving": "استـلام مـن الفرع",
         "Photo": "images/1.webp",
         "DateTime": "12 May. 12:50 AM",
-        "Waiting": "قيد الانتظار"
+        "Waiting": "قيد الانتظار",
+        "OrderName": "Chicken",
+        "Price": "65.33"
     },
     {
-        "OrderNo": "رقـم الطلـب ....    ",
-        "OrderQuan": "كمية الطلب",
+        "OrderNo": "1022",
+        "OrderQuan": "5",
         "Receiving": "استـلام مـن الفرع",
         "Photo": "images/2.jpg",
         "DateTime": "31 May. 03:50 PM",
-        "Waiting": "قيد الانتظار"
+        "Waiting": "قيد الانتظار",
+        "OrderName": "Beef",
+        "Price": "68.36"
     },
     {
-        "OrderNo": "رقـم الطلـب ....    ",
-        "OrderQuan": "كمية الطلب",
+        "OrderNo": "1023",
+        "OrderQuan": "6",
         "Receiving": "استـلام مـن الفرع",
         "Photo": "images/3.jpg",
         "DateTime": "1 Jun. 01:17 AM",
-        "Waiting": "قيد الانتظار"
+        "Waiting": "قيد الانتظار",
+        "OrderName": "Fish",
+        "Price": "48.32"
     },
     {
-        "OrderNo": "رقـم الطلـب ....    ",
-        "OrderQuan": "كمية الطلب",
+        "OrderNo": "1024",
+        "OrderQuan": "3",
         "Receiving": "استـلام مـن الفرع",
         "Photo": "images/4.webp",
         "DateTime": "1 Jun. 10:06 PM",
-        "Waiting": "قيد الانتظار"
+        "Waiting": "قيد الانتظار",
+        "OrderName": "Mushrooms",
+        "Price": "57.25"
     },
     {
-        "OrderNo": "رقـم الطلـب ....    ",
-        "OrderQuan": "كمية الطلب",
+        "OrderNo": "1025",
+        "OrderQuan": "8",
         "Receiving": "استـلام مـن الفرع",
         "Photo": "images/5.jpg",
         "DateTime": "3 Jun. 04:46 PM",
-        "Waiting": "قيد الانتظار"
+        "Waiting": "قيد الانتظار",
+        "OrderName": "Pizza",
+        "Price": "69.20"
     }
 ]

@@ -35,14 +35,14 @@ class _OldOrderCardState extends State<OldOrderCard> {
                 itemCount: items == null ? 0 : items.length,
                 itemBuilder: (context, index) {
                   return OrderCardItems(
-                    OrderNom:
-                        "Order Number: ${items[index].OrderNom.toString()}",
-                    OrderQuan:
-                        'Order Quantity: ${items[index].OrderQuant.toString()}',
+                    OrderNom: items[index].OrderNom.toString(),
+                    OrderQuan: items[index].OrderQuant.toString(),
                     Receiving: items[index].Receivings.toString(),
                     photo: items[index].Photos.toString(),
                     DateTime: items[index].DateTimes.toString(),
                     Waiting: items[index].Waitings.toString(),
+                    price: items[index].Price.toString(),
+                    OrderName: items[index].OrderName.toString(),
                   );
                 },
               );

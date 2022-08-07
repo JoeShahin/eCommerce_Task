@@ -1,9 +1,6 @@
 // ignore_for_file: prefer_const_constructors, avoid_print
 
-
-
 import 'package:flutter/material.dart';
-import 'package:market_app/screens/details_page.dart';
 import 'package:market_app/screens/screens_export.dart';
 
 class AppRouter {
@@ -17,8 +14,6 @@ class AppRouter {
         return Info.route();
       case Profile.routeName:
         return Profile.route();
-      case OrderDetails.routeName:
-        return OrderDetails.route();
       case Settings.routeName:
         return Settings.route();
       case Waiting.routeName:

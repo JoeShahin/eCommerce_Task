@@ -41,6 +41,8 @@ class _NewOrderCardState extends State<NewOrderCard> {
                     DateTime: items[index].DateTime.toString(),
                     Waiting: items[index].Waiting.toString(),
                     photo: items[index].Photo.toString(),
+                    price: items[index].Price.toString(),
+                    OrderName: items[index].OrderName.toString(),
                   );
                 },
               );

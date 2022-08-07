@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 
 import '../widgets/widgets_export.dart';
 
-
 class Info extends StatelessWidget {
-   static const String routeName = "Info";
+  static const String routeName = "Info";
 
   static Route route() {
     return MaterialPageRoute(
         settings: RouteSettings(name: routeName), builder: (_) => Info());
   }
+
   const Info({Key? key}) : super(key: key);
 
   @override

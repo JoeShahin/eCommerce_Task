@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:market_app/screens/details_page.dart';
 
 class OrderCardItems extends StatelessWidget {
   final String OrderNom;
@@ -9,6 +10,8 @@ class OrderCardItems extends StatelessWidget {
   final String photo;
   final String DateTime;
   final String Waiting;
+  final String price;
+  final String OrderName;
   const OrderCardItems({
     Key? key,
     required this.OrderNom,
@@ -17,6 +20,8 @@ class OrderCardItems extends StatelessWidget {
     required this.DateTime,
     required this.Waiting,
     required this.photo,
+    required this.price,
+    required this.OrderName,
   }) : super(key: key);
 
   @override
@@ -33,7 +38,22 @@ class OrderCardItems extends StatelessWidget {
                   padding: EdgeInsets.only(right: 100),
                   child: IconButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, "Order Details");
+                      Navigator.pushNamed(context, "Order details");
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => OrderDetails(
+                            OrderNom: OrderNom,
+                            OrderQuan: OrderQuan.toString(),
+                            Receiving: Receiving.toString(),
+                            DateTime: DateTime.toString(),
+                            Waiting: Waiting.toString(),
+                            photo: photo.toString(),
+                            price: price.toString(),
+                            OrderName: OrderName.toString(),
+                          ),
+                        ),
+                      );
                     },
                     icon: Icon(Icons.arrow_back_ios),
                     color: Color.fromARGB(255, 40, 124, 120),
@@ -44,7 +64,7 @@ class OrderCardItems extends StatelessWidget {
                   child: Column(
                     children: [
                       Text(
-                        OrderNom,
+                        "Order Number: ${OrderNom}",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Color.fromARGB(255, 40, 124, 120),
@@ -53,7 +73,7 @@ class OrderCardItems extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        OrderQuan,
+                        "Order Quantity: ${OrderQuan}",
                         textAlign: TextAlign.right,
                         style: TextStyle(
                           color: Colors.grey,

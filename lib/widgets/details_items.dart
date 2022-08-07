@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:market_app/models/models_export.dart';
 
@@ -22,132 +24,119 @@ class DetailsItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Center(
-          child: Container(
-            width: MediaQuery.of(context).size.width - 20,
-            height: MediaQuery.of(context).size.height - 80,
-            decoration: BoxDecoration(
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.9,
+      color: Colors.white,
+      child: Column(
+        children: [
+          SizedBox(
+            height: 40,
+          ),
+          Text(
+            "Product Details",
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
               color: Color.fromARGB(255, 40, 124, 120),
+            ),
+          ),
+          SizedBox(
+            height: 30,
+          ),
+          ClipRRect(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+            child: SizedBox(
+              height: 300,
+              width: MediaQuery.of(context).size.width,
+              child: Image.asset(
+                photos,
+                fit: BoxFit.fill,
+              ),
+            ),
+          ),
+          Container(
+            height: 300,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              color: Colors.black12,
               borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(20),
-                bottomRight: Radius.circular(20),
+                bottomLeft: Radius.circular(15),
+                bottomRight: Radius.circular(15),
               ),
             ),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Order Details",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: "Avenir",
-                  ),
+                _buildListTile(
+                  title: name,
+                  icon: Icons.title_outlined,
                 ),
-                CircleAvatar(
-                  radius: 100,
-                  backgroundImage: AssetImage(
-                    photos,
-                  ),
+                _buildListTile(
+                  title: price,
+                  icon: Icons.price_check_outlined,
                 ),
-                Text(
-                  name,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
+                _buildListTile(
+                  title: number,
+                  icon: Icons.format_list_numbered_outlined,
                 ),
-                Container(
-                  width: MediaQuery.of(context).size.width - 30,
-                  height: 200,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(20),
+                _buildListTile(
+                  title: quantity,
+                  icon: Icons.production_quantity_limits_outlined,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Center(
+                  child: InkWell(
+                    onTap: () {},
+                    child: Container(
+                      height: 50,
+                      width: 150,
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 40, 124, 120),
+                        border: Border.all(
+                          color: Colors.black,
+                        ),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Confirm",
+                          style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
+                      ),
                     ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey,
-                        blurRadius: 5,
-                        offset: Offset(0, 5),
-                      )
-                    ],
                   ),
-                  child: Column(
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Icon(
-                              Icons.info_outline,
-                              color: Color.fromARGB(255, 40, 124, 120),
-                              size: 35,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "About",
-                              textAlign: TextAlign.justify,
-                              style: TextStyle(
-                                  color: Color.fromARGB(255, 40, 124, 120),
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ],
-                      ),
-                      ListTile(
-                        title: Text(
-                          number,
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 40, 124, 120),
-                          ),
-                        ),
-                        subtitle: Text(
-                          quantity,
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 40, 124, 120),
-                          ),
-                        ),
-                        leading: Icon(
-                          Icons.fastfood_outlined,
-                          color: Color.fromARGB(255, 40, 124, 120),
-                          size: 30,
-                        ),
-                      ),
-                      ListTile(
-                        leading: Icon(
-                          Icons.price_change_outlined,
-                          color: Color.fromARGB(255, 40, 124, 120),
-                          size: 30,
-                        ),
-                        title: Text(
-                          price,
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 40, 124, 120),
-                            fontSize: 20,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                )
               ],
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  ListTile _buildListTile({required String title, required IconData icon}) {
+    return ListTile(
+      leading: Icon(
+        icon,
+        size: 30,
+        color: Color.fromARGB(255, 40, 124, 120),
+      ),
+      title: Text(
+        title,
+        style: TextStyle(
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+          color: Color.fromARGB(255, 40, 124, 120),
         ),
-        SizedBox(
-          height: 20,
-        ),
-      ],
+      ),
     );
   }
 }

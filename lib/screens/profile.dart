@@ -3,14 +3,14 @@
 import 'package:flutter/material.dart';
 import 'package:market_app/widgets/widgets_export.dart';
 
-
 class Profile extends StatelessWidget {
-   static const String routeName = "Profile";
+  static const String routeName = "Profile";
 
   static Route route() {
     return MaterialPageRoute(
         settings: RouteSettings(name: routeName), builder: (_) => Profile());
   }
+
   const Profile({Key? key}) : super(key: key);
 
   @override
